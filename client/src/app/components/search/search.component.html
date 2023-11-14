@@ -1,0 +1,24 @@
+<h1>Search Spotify</h1>
+<input [(ngModel)]="searchString" autocomplete="off" />
+<select
+    [(ngModel)]="searchCategory"
+    (ngModelChange)="handleSearchCategoryChange()"
+    autocomplete="off"
+>
+    <option *ngFor="let category of searchCategories">{{ category }}</option>
+</select>
+<button (click)="search()" class="btn btn-light">Search</button>
+<!-- Display a carousel component if searching for an artist or album. Bind carousel's resources and give it a static carouselId.-->
+<app-carousel
+    *ngIf="searchCategory === 'artist' || searchCategory === 'album'"
+    [resources]="resources"
+    [carouselId]="searchCategory"
+></app-carousel>
+
+<!-- Display a track-list component if searching for a track. Bind track-list's tracks.-->
+<app-track-list
+    *ngIf="searchCategory === 'track'"
+    [tracks]="resources"
+    [hideAlbum]="false"
+    [hideArtist]="false"
+></app-track-list>

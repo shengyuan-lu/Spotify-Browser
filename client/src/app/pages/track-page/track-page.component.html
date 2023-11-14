@@ -1,0 +1,54 @@
+<div class="row">
+    <div *ngIf="track" class="col-6">
+        <!-- populate with track name-->
+        <h1>{{ track.name }}</h1>
+        <p>
+            <!-- link to album page, display album name-->
+            Track on
+            <a [href]="'/album/' + track.album.id">{{ track.album.name }}</a>
+        </p>
+        <div>
+            <p *ngIf="track.artists.length === 1">
+                <!-- If there is only one artist, display artist name and link -->
+                Artist:
+                <a [href]="'/artist/' + track.primaryArtist.id">{{
+                    track.primaryArtist.name
+                }}</a>
+            </p>
+            <p *ngIf="track.artists.length > 1">
+                <!-- If there are multiple artists, loop over them and display the list -->
+                Artists:
+                <ng-container
+                    *ngFor="let artist of track.artists; let last = last"
+                >
+                    <a [href]="'/artist/' + track.primaryArtist.id"
+                        >{{ artist.name }}{{ !last ? ", " : "" }}</a
+                    >
+
+                    <!--Note:{{ !last ? ', ' : '' }} is used to add commas if there is more than 1 artist.
+					it checks if the artist is last in the list, if it is not it adds commas,
+					 it if it is the last element that means no commas are required! -->
+                </ng-container>
+                <br />
+            </p>
+        </div>
+        <p>
+            <!-- populate with track duration-->
+            Duration: {{ track.durationStr }}
+        </p>
+        <p>
+            <!-- link to track page on spotify, display track name-->
+            <a
+                [href]="track.url"
+                class="btn btn-light"
+                role="button"
+                target="_blank"
+                >Open {{ track.name }} on Spotify</a
+            >
+        </p>
+    </div>
+    <div *ngIf="audioFeatures" class="col-6">
+        <!-- loop over types of features and create a thermometer component for each-->
+        <app-thermometer [trackFeatures]="audioFeatures"></app-thermometer>
+    </div>
+</div>
