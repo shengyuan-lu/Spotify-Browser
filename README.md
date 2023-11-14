@@ -1,5 +1,7 @@
 # Spotify Browser
 
+Search & Browse Spotify Artists, Albums, and Tracks. 
+
 ## Main Menu
 ![Screenshot 2023-11-14 at 00 17 30](https://github.com/shengyuan-lu/Spotify-Browser/assets/70995597/ec99e76c-b9b9-4c17-a501-1ce5dd625964)
 
