@@ -47,3 +47,5 @@ webserver/client_secret.json
 .prettierrc
 .DS_Store
 .idea/
+
+.vscode/
